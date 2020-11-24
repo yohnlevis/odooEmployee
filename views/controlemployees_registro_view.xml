@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="controlemployees_horario_action" model="ir.actions.act_window">
+        <field name="name">Horario</field>
+        <field name="res_model">controlemployees.horario</field>
+        <!--aca es en que vista va a iniciar-->
+        <field name="view_type">form</field>
+        <!--tipos de vistas que puede utilizar-->
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear un horario para los colaboradores
+            </p>
+        </field>
+    </record>
+
+    <!--para crear el estado de cada modelo, es como una secuencia en que estado se encuentra-->
+    <record id='controlemployees_empleado_view_form' model='ir.ui.view'>
+        <field name="name">controlemployees.empleado.form</field>
+        <field name="model">controlemployees.empleado</field>
+        <field name="arch" type="xml">
+            <form string="Model">
+
+               <header>
+                   <!-- Estos son los botones para realizar las acciones sobre la raspberry-->
+                   <!--El nombre de este boton es la accion que se debe desarrollar en el modelo-->
+                   <!--solo estara habilitador cuando el estado este en habilatado-->
+                   <!--se le da el grupo de usuarios que va a tener acceso el cual esta en security y debe inciar con el nombre de la plicacion.nombre del modelo-->
+                   <button name="registrar_usuario" states="habilitado" string="RegistrarUsuario" type="object"
+                           groups="controlemployees.controlemployees_group_manager" class="oe_highlight"/>
+                   <button name="habilitar_usuario" states="registrado" string="HabiliarUsuario" type="object"
+                           groups="controlemployees.controlemployees_group_manager" class="oe_highlight"/>
+                   <button name="prender_sensor" states="habilitado,registrado" string="Encender led" type="object"
+                           groups="controlemployees.controlemployees_group_manager" class="oe_highlight"/>
+                   <button name="apagar_sensor" states="habilitado,registrado" string="Apagar led" type="object"
+                           groups="controlemployees.controlemployees_group_manager" class="oe_highlight"/>
+
+                   <!--Aca se esta creando un campo que es el estado y que utilizara un widget barra de estados y en statusbar_visble dice que valores va a mostrar-->
+                   <field name="state" widget="statusbar" statusbar_visible="habilitado,registrado,rechazado"/>
+               </header>
+
+                <sheet>
+                    <group>
+                        <field name="name"></field>
+                        <field name="cedula"></field>
+                        <field name="genero"></field>
+                        <field name="edad"></field>
+                        <field name="horario_id"></field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id='controlemployees_empleado_action' model='ir.actions.act_window'>
+        <field name="name">Empleado</field>
+        <field name="res_model">controlemployees.empleado</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Crear empleado en el sistema
+          </p>
+        </field>
+    </record>
+
+    <record id='controlemployees_registro_action' model='ir.actions.act_window'>
+        <field name="name">Registro</field>
+        <field name="res_model">controlemployees.registro</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Registrar salida y entrada de los colaboradores
+          </p>
+        </field>
+    </record>
+
+</odoo>

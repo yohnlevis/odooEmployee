@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- insert en un modelo-->
+    <record id="module_controlemployees_category" model="ir.module.category">
+        <field name="name">Control Employees</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="controlemployees_group_consult" model="res.groups">
+        <field name="name">Consulta</field>
+        <field name="category_id" ref="module_controlemployees_category"/>
+        <!-- Los usuarios que son de tipo group_user son los que pueden ingresar al backend y realizar cambios-->
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+
+    <record id="controlemployees_group_manager" model="res.groups">
+        <field name="name">Administrador</field>
+        <!-- hereda permisos del grupo anterior-->
+        <field name="implied_ids" eval="[(4, ref('controlemployees_group_consult'))]"/>
+        <field name="category_id" ref="module_controlemployees_category"/>
+        <!-- dando permisos de superadministrador en el sistema -->
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+</odoo>

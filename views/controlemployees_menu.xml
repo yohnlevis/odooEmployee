@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem name="Control employees" id="controlemployees" sequence="10" web_icon="controlemployees,static/description/icon.png"/>
+    <menuitem name="Crear horarios" parent="controlemployees" id="controlemployees_horario" sequence="10" />
+    <menuitem action="controlemployees_horario_action" parent="controlemployees_horario" id="controlemployees_operaciones_horario" sequence="10" />
+
+    <menuitem name="Crear empleados" parent="controlemployees" id="controlemployees_empleado" sequence="20" />
+    <menuitem action="controlemployees_empleado_action" parent="controlemployees_empleado" id="controlemployees_operaciones_empleado" sequence="10" />
+
+    <menuitem name="Realizar resgistros" parent="controlemployees" id="controlemployees_registro" sequence="30" />
+    <menuitem action="controlemployees_registro_action" parent="controlemployees_registro" id="controlemployees_operaciones_registro" sequence="10" />
+
+</odoo>
